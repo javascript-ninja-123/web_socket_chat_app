@@ -1,5 +1,4 @@
 sendgrid.env
 node_modules
-server/email.js
 server/bitcoin.js
 server/blockchain.js

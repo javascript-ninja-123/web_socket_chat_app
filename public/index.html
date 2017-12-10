@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat App</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href='css/chat.css'>
+</head>
+<body>
+  <div id='app'>
+    <div v-if='ok' id='loginPage'>
+      <form id='loginForm'>
+        <h3>Welcome</h3>
+        <input type="email" placeholder='email address' autofocus v-model='name' v-show='!codeNumber'>
+        <input type="text" placeholder='code' autofocus v-model='code' v-show='codeNumber'>
+        <input type="text" placeholder='chat room' v-model='room' v-show="afterVertification">
+        <button @click.enter.prevent='verifyCode' v-show='codeNumber'>{{codeButton}}</button>
+        <button @click.enter.prevent='verifyEmail' v-show='emaiButton'>{{vertifyButton}}</button>
+        <button @click.enter.prevent='enterChatRoom' v-show='afterVertification'>{{buttonText}}</button>
+      </form>
+    </div>
+      <div id='chatBox' v-else>
+        <div id='chatUser'>
+          <h3>User</h3>
+          <ul id='userList'></ul>
+        </div>
+        <div id='chat'>
+          <div id='chatRoom'>
+              <ul id='chatList'></ul>
+          </div>
+          <div id='chatConsole'>
+            <div id='chatInput'>
+              <input type="text" placeholder='type something' autofocus v-model='text'>
+            </div>
+            <div id='chatButton'>
+              <button id='sendButton' @click.enter.prevent='sendMessage'>send</button>
+              <button id='notificationButton' @click.prevent='sendLocation'>send location</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="js/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/socket.js"></script>
+</body>
+</html>
